@@ -36,7 +36,7 @@
 </li>
 
 <li>
-	<a href="<?php echo base_url("kegiatan"); ?>">
+	<a href="<?php echo base_url("universal/index/kegiatan"); ?>">
 		<i class="fa fa-users text-aqua"></i>
 		<span>Data Kegiatan</span>
 	</a>
