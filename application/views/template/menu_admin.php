@@ -35,3 +35,10 @@
 	</a>
 </li>
 
+<li>
+	<a href="<?php echo base_url("kegiatan"); ?>">
+		<i class="fa fa-users text-aqua"></i>
+		<span>Data Kegiatan</span>
+	</a>
+</li>
+
