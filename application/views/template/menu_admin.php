@@ -1,50 +1,37 @@
 <li class="header">MENU UTAMA</li>
 
 <li>
-	<a href="<?php echo base_url("universal/index/golongan"); ?>">
+	<a href="<?php echo base_url("universal/index/kategori"); ?>">
 		<i class="fa fa-users text-aqua"></i>
-		<span>Data Golongan</span>
+		<span>Data Kategori</span>
 	</a>
 </li>
 
 <li>
-	<a href="<?php echo base_url("universal/index/jenis"); ?>">
+	<a href="<?php echo base_url("universal/index/mahasiswa"); ?>">
 		<i class="fa fa-users text-aqua"></i>
-		<span>Data Jenis</span>
+		<span>Data Mahasiswa</span>
 	</a>
 </li>
 
 <li>
-	<a href="<?php echo base_url("limbah"); ?>">
+	<a href="<?php echo base_url("universal/index/prestasi"); ?>">
 		<i class="fa fa-users text-aqua"></i>
-		<span>Data Limbah</span>
+		<span>Data Prestasi</span>
 	</a>
 </li>
 
 <li>
-	<a href="<?php echo base_url("universal/index/sumber"); ?>">
+	<a href="<?php echo base_url("universal/index/semester"); ?>">
 		<i class="fa fa-users text-aqua"></i>
-		<span>Data Sumber</span>
+		<span>Data Semester</span>
 	</a>
 </li>
 
 <li>
-	<a href="<?php echo base_url("universal/index/unit"); ?>">
+	<a href="<?php echo base_url("universal/index/tingkat"); ?>">
 		<i class="fa fa-users text-aqua"></i>
-		<span>Data Unit</span>
+		<span>Data Tingkat</span>
 	</a>
 </li>
 
-<li>
-	<a href="<?php echo base_url("universal/index/pengangkut"); ?>">
-		<i class="fa fa-users text-aqua"></i>
-		<span>Data Pengangkut</span>
-	</a>
-</li>
-
-<li>
-	<a href="<?php echo base_url("user"); ?>">
-		<i class="fa fa-users text-aqua"></i>
-		<span>Data User</span>
-	</a>
-</li>
