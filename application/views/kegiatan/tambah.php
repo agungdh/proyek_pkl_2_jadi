@@ -21,7 +21,7 @@
             <?php
             foreach ($this->db->get('tingkat')->result() as $item) {
               ?>
-              <option value="<?php echo $item->id; ?>" selected><?php echo $item->tingkat; ?></option>
+              <option value="<?php echo $item->id; ?>"><?php echo $item->tingkat; ?></option>
               <?php
             }
             ?>
@@ -34,7 +34,7 @@
           <?php
           foreach ($this->db->get('kategori')->result() as $item) {
             ?>
-            <option value="<?php echo $item->id; ?>" selected><?php echo $item->kategori; ?></option>
+            <option value="<?php echo $item->id; ?>"><?php echo $item->kategori; ?></option>
             <?php
           }
           ?>
@@ -43,9 +43,9 @@
 
     <div class="form-group">
       <label for="tahun_ajar_awal">Tahun Ajar</label>
-          <input required type="number" min="1900" max="2900" id="tahun_ajar_awal" placeholder="Isi tahun_ajar_awal" name="data[tahun_ajar_awal]">
+          <input required type="number" min="1900" max="2900" id="tahun_ajar_awal" placeholder="Tahun Awal" name="data[tahun_ajar_awal]">
           /          
-          <input required type="number" min="1900" max="2900" id="tahun_ajar_akhir" placeholder="Isi tahun_ajar_akhir" name="data[tahun_ajar_akhir]">          
+          <input required type="number" min="1900" max="2900" id="tahun_ajar_akhir" placeholder="Tahun Akhir" name="data[tahun_ajar_akhir]">          
     </div>
 
     <div class="form-group">
@@ -54,7 +54,7 @@
           <?php
           foreach ($this->db->get('semester')->result() as $item) {
             ?>
-            <option value="<?php echo $item->id; ?>" selected><?php echo $item->semester; ?></option>
+            <option value="<?php echo $item->id; ?>"><?php echo $item->semester; ?></option>
             <?php
           }
           ?>
