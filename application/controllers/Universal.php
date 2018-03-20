@@ -29,15 +29,18 @@ class Universal extends CI_Controller {
 			$data[$key] = $value;
 		}
 		$this->m_universal->insert($this->data['modul'], $data);
-
-		redirect(base_url('universal/' . 'index/' . $this->data['modul']));
+		if ($modul == 'kegiatan') {
+			redirect(base_url('universal/' . 'ubah/' . $this->data['modul'] . '/' . $this->db->insert_id()));
+		} else {
+			redirect(base_url('universal/' . 'index/' . $this->data['modul']));
+		}
 	}
 
 	function ubah($modul, $id) {
 		$this->data['modul'] = $modul;
 		$this->data['isi'] = $this->data['modul'] . "/ubah";
 		$this->data['data'][$this->data['modul']] = $this->m_universal->get_id($this->data['modul'], $id);
-
+		
 		$this->load->view("template/template", $this->data);
 	}
 

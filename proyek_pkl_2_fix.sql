@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2018 at 10:16 AM
+-- Generation Time: Mar 20, 2018 at 05:00 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -76,6 +76,13 @@ CREATE TABLE `kegiatan` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kegiatan`
+--
+
+INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `tingkat_id`, `kategori_id`, `tahun_ajar_awal`, `tahun_ajar_akhir`, `semester_id`, `tanggal_awal_lomba`, `tanggal_akhir_lomba`, `tempat_lomba`, `user_id`, `created_at`) VALUES
+(11, 'Kejuaraan Bola Voli \"DIESNATALIS STIKES PERTAMEDIKA\"', 1, 3, 2017, 2018, 1, '2017-03-16', '2017-03-17', 'STIKES PERTAMEDIKA', 1, '2018-03-20 03:46:38');
 
 -- --------------------------------------------------------
 
@@ -474,7 +481,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mahasiswa`
@@ -504,7 +511,7 @@ ALTER TABLE `team`
 -- AUTO_INCREMENT for table `tingkat`
 --
 ALTER TABLE `tingkat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`

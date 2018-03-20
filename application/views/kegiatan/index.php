@@ -64,8 +64,8 @@
               }
               ?>
             <center>
-              <th><img width="25%" height="25%" src="<?php echo $bukti; ?>"></th>
-              <th><img width="25%" height="25%" src="<?php echo $foto; ?>"></th>
+              <th><a target="_blank" href="<?php echo $bukti; ?>"><img width="25%" height="25%" src="<?php echo $bukti; ?>"></a></th>
+              <th><a target="_blank" href="<?php echo $foto; ?>"><img width="25%" height="25%" src="<?php echo $foto; ?>"></a></th>
             </center>
               <th>
                 <a class="btn btn-primary" href="<?php echo base_url('universal/' . "ubah/" . $modul . '/' . $item->id); ?>"><i class="fa fa-share"></i>  Detail</a>
