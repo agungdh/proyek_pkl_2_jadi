@@ -118,6 +118,26 @@ if ($modul == "kegiatan") {
       </thead>
 
       <tbody>
+        <tr>
+          <form>
+            <td><input class="form-control" type="text" name="data[nama_team]"></td>
+            <td><input class="form-control" type="number" min="1" max="100" name="data[jumlah_anggota]"></td>
+            <td>
+              <select class="form-control select2" name="data[prestasi_id]">
+                <?php
+                foreach ($this->db->get('prestasi')->result() as $item) {
+                  ?>
+                  <option value="<?php echo $item->id; ?>"><?php echo $item->prestasi; ?></option>
+                  <?php
+                }
+                ?>
+              </select>
+            </td>
+            <td><input class="form-control" type="file" name="data[bukti]"></td>
+            <td><input class="form-control" type="file" name="data[foto]"></td>
+            <td><a class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></a></td>
+          </form>
+        </tr>
         <?php
         foreach ($this->db->get_where('team', array('kegiatan_id' => $data['kegiatan']->id))->result() as $item) {
           ?>
@@ -136,8 +156,8 @@ if ($modul == "kegiatan") {
               }
               ?>
             <center>
-              <th><a target="_blank" href="<?php echo $bukti; ?>"><img width="25%" height="25%" src="<?php echo $bukti; ?>"></a></th>
-              <th><a target="_blank" href="<?php echo $foto; ?>"><img width="25%" height="25%" src="<?php echo $foto; ?>"></a></th>
+              <td><a target="_blank" href="<?php echo $bukti; ?>"><img width="25%" height="25%" src="<?php echo $bukti; ?>"></a></td>
+              <td><a target="_blank" href="<?php echo $foto; ?>"><img width="25%" height="25%" src="<?php echo $foto; ?>"></a></td>
             </center>
 
           </tr>
