@@ -108,6 +108,11 @@ if ($modul == "kegiatan") {
       <thead>
         <tr>
                     <th>TEAM</th>
+                    <th>JUMLAH ANGGOTA</th>
+                    <th>PRESTASI</th>
+                    <th>BUKTI</th>
+                    <th>FOTO</th>
+                    <th>PROSES</th>
         </tr>
       </thead>
 
@@ -117,6 +122,23 @@ if ($modul == "kegiatan") {
           ?>
           <tr>
             <th><?php echo $item->team; ?></th>
+                          <?php 
+              if (file_exists('uploads/bukti/' . $item->id)) {
+                $bukti = base_url('uploads/bukti/' . $item->id);
+              } else {
+                $bukti = base_url('uploads/noimage');
+              }
+              if (file_exists('uploads/foto/' . $item->id)) {
+                $foto = base_url('uploads/foto/' . $item->id);
+              } else {
+                $foto = base_url('uploads/noimage');
+              }
+              ?>
+            <center>
+              <th><a target="_blank" href="<?php echo $bukti; ?>"><img width="25%" height="25%" src="<?php echo $bukti; ?>"></a></th>
+              <th><a target="_blank" href="<?php echo $foto; ?>"><img width="25%" height="25%" src="<?php echo $foto; ?>"></a></th>
+            </center>
+
           </tr>
           <?php
         }

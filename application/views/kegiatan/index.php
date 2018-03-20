@@ -33,8 +33,6 @@
                     <th>SEMESTER</th>
                     <th>TANGGAL LOMBA</th>
                     <th>TEMPAT LOMBA</th>
-                    <th>BUKTI</th>
-                    <th>FOTO</th>
                     <th>PROSES</th>
         </tr>
       </thead>
@@ -51,22 +49,6 @@
             <th><?php echo $this->db->get_where('semester', array('id' => $item->semester_id))->row()->semester; ?></th>
             <th><?php echo $this->pustaka->tanggal_indo($item->tanggal_awal_lomba) . ' - ' . $this->pustaka->tanggal_indo($item->tanggal_akhir_lomba); ?></th>
             <th><?php echo $item->tempat_lomba; ?></th>
-              <?php 
-              if (file_exists('uploads/bukti/' . $item->id)) {
-                $bukti = base_url('uploads/bukti/' . $item->id);
-              } else {
-                $bukti = base_url('uploads/noimage');
-              }
-              if (file_exists('uploads/foto/' . $item->id)) {
-                $foto = base_url('uploads/foto/' . $item->id);
-              } else {
-                $foto = base_url('uploads/noimage');
-              }
-              ?>
-            <center>
-              <th><a target="_blank" href="<?php echo $bukti; ?>"><img width="25%" height="25%" src="<?php echo $bukti; ?>"></a></th>
-              <th><a target="_blank" href="<?php echo $foto; ?>"><img width="25%" height="25%" src="<?php echo $foto; ?>"></a></th>
-            </center>
               <th>
                 <a class="btn btn-primary" href="<?php echo base_url('universal/' . "ubah/" . $modul . '/' . $item->id); ?>"><i class="fa fa-share"></i>  Detail</a>
               </th>
