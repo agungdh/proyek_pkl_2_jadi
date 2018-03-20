@@ -59,6 +59,16 @@ class Universal extends CI_Controller {
 	}
 
 	function aksi_hapus($modul, $id) {
+		if ($modul == 'kegiatan') {
+			//hapus data anggota team
+			foreach ($this->db->get_where('team', array('kegiatan_id' => $id))->result() as $item) {
+				$this->db->delete('detail_team', array('team_id' => $item->id));
+			}
+
+			//hapus data team
+			$this->db->delete('team', array('kegiatan_id' => $id));
+		}
+
 		$this->data['modul'] = $modul;
 		$this->m_universal->delete(
 			$this->data['modul'], $id

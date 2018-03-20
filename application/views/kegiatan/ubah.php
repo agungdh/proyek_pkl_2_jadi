@@ -95,6 +95,7 @@
     <div class="box-footer">
       <input class="btn btn-success" name="proses" type="submit" value="Simpan Data" />
       <a href="<?php echo base_url('universal/' . 'index/' . $modul); ?>" class="btn btn-info">Batal</a>
+      <a class="btn btn-danger" onclick="hapus('<?php echo $data['kegiatan']->id; ?>')">Hapus</a>
     </div>
   </form>
 
@@ -122,7 +123,7 @@ if ($modul == "kegiatan") {
           ?>
           <tr>
             <th><?php echo $item->team; ?></th>
-                          <?php 
+              <?php 
               if (file_exists('uploads/bukti/' . $item->id)) {
                 $bukti = base_url('uploads/bukti/' . $item->id);
               } else {
@@ -159,4 +160,10 @@ $(function () {
     responsive: true
   });
 });
+
+function hapus(id) {
+  if (confirm("Yakin hapus ?")) {
+    window.location = "<?php echo base_url('universal/' . "aksi_hapus/" . $modul . '/'); ?>" + id;
+  }
+}
 </script>
