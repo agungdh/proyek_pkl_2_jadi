@@ -119,7 +119,8 @@ if ($modul == "kegiatan") {
 
       <tbody>
         <tr>
-          <form>
+          <form enctype="multipart/form-data" method="post" id="formq" action="<?php echo base_url('universal/aksi_tambah_team'); ?>">
+            <input type="hidden" name="data[kegiatan_id]" value="<?php echo $data['kegiatan']->id; ?>">
             <td><input class="form-control" type="text" name="data[nama_team]"></td>
             <td><input class="form-control" type="number" min="1" max="100" name="data[jumlah_anggota]"></td>
             <td>
@@ -133,16 +134,18 @@ if ($modul == "kegiatan") {
                 ?>
               </select>
             </td>
-            <td><input class="form-control" type="file" name="data[bukti]"></td>
-            <td><input class="form-control" type="file" name="data[foto]"></td>
-            <td><a class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></a></td>
+            <td><input class="form-control" type="file" name="bukti"></td>
+            <td><input class="form-control" type="file" name="foto"></td>
+            <td><a class="btn btn-success" onclick="$('#formq').submit()"><i class="glyphicon glyphicon-plus"></i></a></td>
           </form>
         </tr>
         <?php
         foreach ($this->db->get_where('team', array('kegiatan_id' => $data['kegiatan']->id))->result() as $item) {
           ?>
           <tr>
-            <th><?php echo $item->team; ?></th>
+            <th><?php echo $item->nama_team; ?></th>
+            <th><?php echo $item->jumlah_anggota; ?></th>
+            <th><?php echo $this->db->get_where('prestasi', array('id' => $item->prestasi_id))->row()->prestasi; ?></th>
               <?php 
               if (file_exists('uploads/bukti/' . $item->id)) {
                 $bukti = base_url('uploads/bukti/' . $item->id);
@@ -156,10 +159,10 @@ if ($modul == "kegiatan") {
               }
               ?>
             <center>
-              <td><a target="_blank" href="<?php echo $bukti; ?>"><img width="25%" height="25%" src="<?php echo $bukti; ?>"></a></td>
-              <td><a target="_blank" href="<?php echo $foto; ?>"><img width="25%" height="25%" src="<?php echo $foto; ?>"></a></td>
+              <td><a target="_blank" href="<?php echo $bukti; ?>"><img width="100px" height="100px" src="<?php echo $bukti; ?>"></a></td>
+              <td><a target="_blank" href="<?php echo $foto; ?>"><img width="100px" height="100px" src="<?php echo $foto; ?>"></a></td>
             </center>
-
+            <th><?php echo $item->jumlah_anggota; ?></th>
           </tr>
           <?php
         }
@@ -177,7 +180,8 @@ if ($modul == "kegiatan") {
 $(function () {
   $('.select2').select2();
   $('#lookup').DataTable({
-    responsive: true
+    responsive: true,
+    orderCellsTop: true
   });
 });
 

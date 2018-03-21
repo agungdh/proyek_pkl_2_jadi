@@ -77,4 +77,19 @@ class Universal extends CI_Controller {
 		redirect(base_url('universal/' . 'index/' . $this->data['modul']));
 	}
 
+	//========================================================================================================
+
+	function aksi_tambah_team() {
+		foreach ($this->input->post('data') as $key => $value) {
+			$data[$key] = $value;
+		}
+		$this->m_universal->insert('team', $data);
+		
+		$insert_id = $this->db->insert_id();
+
+		move_uploaded_file($_FILES['bukti']['tmp_name'], 'uploads/bukti/' . $insert_id);
+		move_uploaded_file($_FILES['foto']['tmp_name'], 'uploads/foto/' . $insert_id);
+
+		redirect(base_url('universal/' . 'ubah/' . 'kegiatan' . '/' . $data['kegiatan_id']));
+	}
 }
