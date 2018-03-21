@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2018 at 05:00 AM
+-- Generation Time: Mar 21, 2018 at 03:43 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -82,7 +82,8 @@ CREATE TABLE `kegiatan` (
 --
 
 INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `tingkat_id`, `kategori_id`, `tahun_ajar_awal`, `tahun_ajar_akhir`, `semester_id`, `tanggal_awal_lomba`, `tanggal_akhir_lomba`, `tempat_lomba`, `user_id`, `created_at`) VALUES
-(11, 'Kejuaraan Bola Voli \"DIESNATALIS STIKES PERTAMEDIKA\"', 1, 3, 2017, 2018, 1, '2017-03-16', '2017-03-17', 'STIKES PERTAMEDIKA', 1, '2018-03-20 03:46:38');
+(18, 'Kejuaraan Bola Voli ', 2, 3, 2016, 2017, 2, '2017-03-16', '2017-03-17', 'STIKES PERTAMEDIKA', 1, '2018-03-20 08:43:50'),
+(19, 'Paduan Suara', 1, 1, 2017, 2018, 2, '2018-03-09', '2018-03-06', 'Universitas BUdi Luhur', 1, '2018-03-21 02:11:00');
 
 -- --------------------------------------------------------
 
@@ -352,6 +353,13 @@ CREATE TABLE `team` (
   `kegiatan_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `team`
+--
+
+INSERT INTO `team` (`id`, `nama_team`, `jumlah_anggota`, `prestasi_id`, `kegiatan_id`) VALUES
+(19, 'padus', 2, 2, 19);
+
 -- --------------------------------------------------------
 
 --
@@ -481,7 +489,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `mahasiswa`
@@ -505,13 +513,13 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tingkat`
 --
 ALTER TABLE `tingkat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
