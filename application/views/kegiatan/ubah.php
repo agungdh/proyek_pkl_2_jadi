@@ -105,15 +105,15 @@ if ($modul == "kegiatan") {
   <div class="box-header with-border">
     <h4><strong><font color=blue>DATA TEAM</font></strong></h4>
   </div><!-- /.box-header -->
-  <table id="lookup" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+  <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
       <thead>
         <tr>
-                    <th>TEAM</th>
-                    <th>JUMLAH ANGGOTA</th>
-                    <th>PRESTASI</th>
-                    <th>BUKTI</th>
-                    <th>FOTO</th>
-                    <th>PROSES</th>
+            <th>TEAM</th>
+            <th>JUMLAH ANGGOTA</th>
+            <th>PRESTASI</th>
+            <th>BUKTI</th>
+            <th>FOTO</th>
+            <th>PROSES</th>
         </tr>
       </thead>
 
@@ -121,10 +121,10 @@ if ($modul == "kegiatan") {
         <tr>
           <form enctype="multipart/form-data" method="post" id="formq" action="<?php echo base_url('universal/aksi_tambah_team'); ?>">
             <input type="hidden" name="data[kegiatan_id]" value="<?php echo $data['kegiatan']->id; ?>">
-            <td><input class="form-control" type="text" name="data[nama_team]"></td>
+            <td><input class="form-control" type="text" name="data[nama_team]" style="width: 150px"></td>
             <td><input class="form-control" type="number" min="1" max="100" name="data[jumlah_anggota]"></td>
             <td>
-              <select class="form-control select2" name="data[prestasi_id]">
+              <select class="form-control select2" name="data[prestasi_id]" style="width: 150px">
                 <?php
                 foreach ($this->db->get('prestasi')->result() as $item) {
                   ?>
@@ -134,8 +134,8 @@ if ($modul == "kegiatan") {
                 ?>
               </select>
             </td>
-            <td><input class="form-control" type="file" name="bukti"></td>
-            <td><input class="form-control" type="file" name="foto"></td>
+            <td><input class="form-control" type="file" name="bukti" style="width: 200px"></td>
+            <td><input class="form-control" type="file" name="foto" style="width: 200px"></td>
             <td><a class="btn btn-success" onclick="$('#formq').submit()"><i class="glyphicon glyphicon-plus"></i></a></td>
           </form>
         </tr>
