@@ -178,11 +178,11 @@ if ($modul == "kegiatan") {
             <center>
               <td>
                 <a target="_blank" href="<?php echo $bukti; ?>"><img width="100px" height="100px" src="<?php echo $bukti; ?>"></a>
-                <input type="file" name="bukti">
+                <input type="file" class="form-control" name="bukti">
               </td>
               <td>
                 <a target="_blank" href="<?php echo $foto; ?>"><img width="100px" height="100px" src="<?php echo $foto; ?>"></a>
-                <input type="file" name="foto">
+                <input type="file" class="form-control" name="foto">
               </td>
             </center>
             <td>
@@ -191,6 +191,48 @@ if ($modul == "kegiatan") {
             </td>
           </tr>
           </form>
+          <form id="anggota<?php echo $item->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo base_url('universal/' . "aksi_tambah_anggota/" . $item->id); ?>">
+          <tr>
+            <th></th>
+            <th></th>
+            <th>ANGGOTA</th>
+            <th>
+              <select class="form-control select2" name="mahasiswa">
+                <?php
+                foreach ($this->m_kegiatan->ambil_mahasiswa($item->id) as $value) {
+                  ?>
+                  <option value="<?php echo $value->id; ?>"><?php echo $value->nim; ?> | <?php echo $value->nama; ?></option>
+                  <?php
+                }
+                ?>
+              </select>
+            </th>
+            <th></th>
+            <th>
+              <a class="btn btn-success" onclick="$('#anggota<?php echo $item->id; ?>').submit()"><i class="glyphicon glyphicon-plus"></i></a>
+            </th>
+          </tr>
+          </form>
+          <?php
+          $i = 1;
+          foreach ($this->db->get_where('detail_team', array('team_id' => $item->id))->result() as $values) {
+            ?>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><?php echo $i; ?></td>
+              <td><?php echo $this->db->get_where('mahasiswa', array('id' => $values->mahasiswa_id))->row()->nim; ?></td>
+              <td><?php echo $this->db->get_where('mahasiswa', array('id' => $values->mahasiswa_id))->row()->nama; ?></td>
+              <td>
+                <a class="btn btn-danger" onclick="hapus_anggota('<?php echo $values->id; ?>')"><i class="glyphicon glyphicon-plus"></i></a>
+              </td>
+            </tr>
+            <?php
+            $i++;
+          }
+          ?>
+
+
           <?php
         }
         ?>
@@ -221,6 +263,12 @@ function hapus(id) {
 function hapus_team(id) {
   if (confirm("Yakin hapus ?")) {
     window.location = "<?php echo base_url('universal/' . "aksi_hapus_team/"); ?>" + id;
+  }
+}
+
+function hapus_anggota(id) {
+  if (confirm("Yakin hapus ?")) {
+    window.location = "<?php echo base_url('universal/' . "aksi_hapus_anggota/"); ?>" + id;
   }
 }
 </script>

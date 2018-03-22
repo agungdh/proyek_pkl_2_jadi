@@ -6,6 +6,7 @@ class Universal extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+		$this->load->model('m_kegiatan');
 	}
 
 	function index($modul) {
@@ -77,7 +78,7 @@ class Universal extends CI_Controller {
 		redirect(base_url('universal/' . 'index/' . $this->data['modul']));
 	}
 
-	//========================================================================================================
+	//TEAM========================================================================================================
 
 	function aksi_tambah_team() {
 		foreach ($this->input->post('data') as $key => $value) {
@@ -117,6 +118,29 @@ class Universal extends CI_Controller {
 
 		$this->db->delete('detail_team', array('team_id' => $team->id));
 		$this->db->delete('team', array('id' => $team->id));
+
+		redirect(base_url('universal/' . 'ubah/' . 'kegiatan/' . $team->kegiatan_id));
+	}
+
+	//ANGGOTA========================================================================================================
+
+	function aksi_tambah_anggota($id_team) {
+		$id_kegiatan = $this->db->get_where('team', array('id' => $id_team))->row()->kegiatan_id;
+
+		$data['team_id'] = $id_team;
+		$data['mahasiswa_id'] = $this->input->post('mahasiswa');
+		$this->m_universal->insert('detail_team', $data);
+		
+		$insert_id = $this->db->insert_id();
+
+		redirect(base_url('universal/' . 'ubah/' . 'kegiatan' . '/' . $id_kegiatan));
+	}
+
+	function aksi_hapus_anggota($id) {
+		$anggota = $this->m_universal->get_id('detail_team', $id);
+		$team = $this->m_universal->get_id('team', $anggota->team_id);
+
+		$this->db->delete('detail_team', array('id' => $id));
 
 		redirect(base_url('universal/' . 'ubah/' . 'kegiatan/' . $team->kegiatan_id));
 	}
