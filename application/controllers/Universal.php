@@ -112,4 +112,13 @@ class Universal extends CI_Controller {
 		redirect(base_url('universal/' . 'ubah/' . 'kegiatan/' . $id_kegiatan));
 	}
 
+	function aksi_hapus_team($id) {
+		$team = $this->m_universal->get_id('team', $id);
+
+		$this->db->delete('detail_team', array('team_id' => $team->id));
+		$this->db->delete('team', array('id' => $team->id));
+
+		redirect(base_url('universal/' . 'ubah/' . 'kegiatan/' . $team->kegiatan_id));
+	}
+
 }
