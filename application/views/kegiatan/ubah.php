@@ -186,8 +186,8 @@ if ($modul == "kegiatan") {
               </td>
             </center>
             <td>
-              <a class="btn btn-primary" onclick="$('#team<?php echo $item->id; ?>').submit()"><i class="glyphicon glyphicon-plus"></i></a>
-              <a class="btn btn-danger" onclick="hapus_team('<?php echo $item->id; ?>')"><i class="glyphicon glyphicon-plus"></i></a>
+              <a class="btn btn-primary" onclick="$('#team<?php echo $item->id; ?>').submit()"><i class="fa fa-pencil"></i></a>
+              <a class="btn btn-danger" onclick="hapus_team('<?php echo $item->id; ?>')"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
           </form>
@@ -224,7 +224,7 @@ if ($modul == "kegiatan") {
               <td><?php echo $this->db->get_where('mahasiswa', array('id' => $values->mahasiswa_id))->row()->nim; ?></td>
               <td><?php echo $this->db->get_where('mahasiswa', array('id' => $values->mahasiswa_id))->row()->nama; ?></td>
               <td>
-                <a class="btn btn-danger" onclick="hapus_anggota('<?php echo $values->id; ?>')"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="btn btn-danger" onclick="hapus_anggota('<?php echo $values->id; ?>')"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             <?php
