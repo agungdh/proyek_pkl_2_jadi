@@ -120,10 +120,10 @@ if ($modul == "kegiatan") {
       <tbody>
         <tr>
           <form enctype="multipart/form-data" method="post" id="formq" action="<?php echo base_url('universal/aksi_tambah_team'); ?>">
-            <input type="hidden" name="data[kegiatan_id]" value="<?php echo $data['kegiatan']->id; ?>">
-            <td><input class="form-control" type="text" name="data[nama_team]" style="width: 150px"></td>
-            <td><input class="form-control" type="number" min="1" max="100" name="data[jumlah_anggota]"></td>
-            <td>
+            <input required type="hidden" name="data[kegiatan_id]" value="<?php echo $data['kegiatan']->id; ?>">
+            <th><input required class="form-control" type="text" name="data[nama_team]" style="width: 150px"></th>
+            <th><input required class="form-control" type="number" min="1" max="100" name="data[jumlah_anggota]"></th>
+            <th>
               <select class="form-control select2" name="data[prestasi_id]" style="width: 150px">
                 <?php
                 foreach ($this->db->get('prestasi')->result() as $item) {
@@ -133,19 +133,36 @@ if ($modul == "kegiatan") {
                 }
                 ?>
               </select>
-            </td>
-            <td><input class="form-control" type="file" name="bukti" style="width: 200px"></td>
-            <td><input class="form-control" type="file" name="foto" style="width: 200px"></td>
-            <td><a class="btn btn-success" onclick="$('#formq').submit()"><i class="glyphicon glyphicon-plus"></i></a></td>
+            </th>
+            <th><input class="form-control" type="file" name="bukti" style="width: 200px"></th>
+            <th><input class="form-control" type="file" name="foto" style="width: 200px"></th>
+            <th><a class="btn btn-success" onclick="$('#formq').submit()"><i class="glyphicon glyphicon-plus"></i></a></th>
           </form>
         </tr>
         <?php
         foreach ($this->db->get_where('team', array('kegiatan_id' => $data['kegiatan']->id))->result() as $item) {
           ?>
+          <form id="team<?php echo $item->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo base_url('universal/' . "aksi_ubah_team/" . $item->id); ?>">
           <tr>
-            <th><?php echo $item->nama_team; ?></th>
-            <th><?php echo $item->jumlah_anggota; ?></th>
-            <th><?php echo $this->db->get_where('prestasi', array('id' => $item->prestasi_id))->row()->prestasi; ?></th>
+            <td><input required class="form-control" type="text" name="data[nama_team]" value="<?php echo $item->nama_team; ?>"></td>
+            <td><input required class="form-control" type="number" min="1" max="100" name="data[jumlah_anggota]" value="<?php echo $item->jumlah_anggota; ?>"></td>
+            <td>
+              <select class="form-control select2" name="data[prestasi_id]" style="width: 150px">
+                <?php
+                foreach ($this->db->get('prestasi')->result() as $prestasi) {
+                  if ($prestasi->id == $item->prestasi_id) {
+                    ?>
+                    <option selected value="<?php echo $prestasi->id; ?>"><?php echo $prestasi->prestasi; ?></option>
+                    <?php
+                  } else {
+                    ?>
+                    <option value="<?php echo $prestasi->id; ?>"><?php echo $prestasi->prestasi; ?></option>
+                    <?php
+                  }
+                }
+                ?>
+              </select>
+            </td>
               <?php 
               if (file_exists('uploads/bukti/' . $item->id)) {
                 $bukti = base_url('uploads/bukti/' . $item->id);
@@ -159,11 +176,21 @@ if ($modul == "kegiatan") {
               }
               ?>
             <center>
-              <td><a target="_blank" href="<?php echo $bukti; ?>"><img width="100px" height="100px" src="<?php echo $bukti; ?>"></a></td>
-              <td><a target="_blank" href="<?php echo $foto; ?>"><img width="100px" height="100px" src="<?php echo $foto; ?>"></a></td>
+              <td>
+                <a target="_blank" href="<?php echo $bukti; ?>"><img width="100px" height="100px" src="<?php echo $bukti; ?>"></a>
+                <input type="file" name="bukti">
+              </td>
+              <td>
+                <a target="_blank" href="<?php echo $foto; ?>"><img width="100px" height="100px" src="<?php echo $foto; ?>"></a>
+                <input type="file" name="foto">
+              </td>
             </center>
-            <th><?php echo $item->jumlah_anggota; ?></th>
+            <td>
+              <a class="btn btn-primary" onclick="$('#team<?php echo $item->id; ?>').submit()"><i class="glyphicon glyphicon-plus"></i></a>
+              <a class="btn btn-danger" onclick="hapus_team('<?php echo $item->id; ?>')"><i class="glyphicon glyphicon-plus"></i></a>
+            </td>
           </tr>
+          </form>
           <?php
         }
         ?>
@@ -188,6 +215,12 @@ $(function () {
 function hapus(id) {
   if (confirm("Yakin hapus ?")) {
     window.location = "<?php echo base_url('universal/' . "aksi_hapus/" . $modul . '/'); ?>" + id;
+  }
+}
+
+function hapus_team(id) {
+  if (confirm("Yakin hapus ?")) {
+    window.location = "<?php echo base_url('universal/' . "aksi_hapus_team/"); ?>" + id;
   }
 }
 </script>

@@ -92,4 +92,24 @@ class Universal extends CI_Controller {
 
 		redirect(base_url('universal/' . 'ubah/' . 'kegiatan' . '/' . $data['kegiatan_id']));
 	}
+
+	function aksi_ubah_team($id) {
+		foreach ($this->input->post('data') as $key => $value) {
+			if ($key != 'id') {
+				$data[$key] = $value;	
+			} else {
+				$id = $value;
+			}
+		}
+		
+		move_uploaded_file($_FILES['bukti']['tmp_name'], 'uploads/bukti/' . $id);
+		move_uploaded_file($_FILES['foto']['tmp_name'], 'uploads/foto/' . $id);
+
+		$this->m_universal->update('team', $data, $id);
+
+		$id_kegiatan = $this->db->get_where('team', array('id' => $id))->row()->kegiatan_id;
+
+		redirect(base_url('universal/' . 'ubah/' . 'kegiatan/' . $id_kegiatan));
+	}
+
 }
